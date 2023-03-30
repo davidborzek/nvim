@@ -25,4 +25,11 @@ require("lazy").setup("core.plugins", {
 		enabled = false,
 		notify = true,
 	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"netrwPlugin",
+			},
+		},
+	},
 })
