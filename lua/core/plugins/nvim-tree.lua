@@ -37,4 +37,12 @@ return {
 
 		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 	end,
+	keys = {
+		{
+			"<C-n>",
+			":NvimTreeToggle<CR>",
+			desc = "Toggle file explorer",
+			silent = true,
+		},
+	},
 }
