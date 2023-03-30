@@ -6,6 +6,7 @@ local M = {
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
+		"hrsh7th/vim-vsnip",
 	},
 	config = function()
 		local cmp = require("cmp")
