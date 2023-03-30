@@ -1,5 +1,36 @@
 local M = {}
 
+-- treesitter parsers to be installed
+M.treesitter_ensure_installed = {
+	"bash",
+	"css",
+	"dockerfile",
+	"fish",
+	"go",
+	"gomod",
+	"gosum",
+	"hcl",
+	"html",
+	"java",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"perl",
+	"python",
+	"regex",
+	"rust",
+	"scss",
+	"sql",
+	"terraform",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"yaml",
+}
+
 -- LSP servers that should be installed by mason-lspconfig
 M.lsp_servers = {
 	"ansiblels",
