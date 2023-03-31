@@ -5,4 +5,7 @@ return {
 		updateevents = "TextChanged,TextChangedI",
 		delete_check_events = "TextChanged",
 	},
+	init = function()
+		require("core.plugins.snippets.go")
+	end,
 }
