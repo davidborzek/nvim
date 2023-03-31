@@ -41,6 +41,7 @@ return {
 				-- golang
 				null_ls.builtins.diagnostics.staticcheck,
 				null_ls.builtins.formatting.gofmt,
+				null_ls.builtins.formatting.goimports,
 				-- prettier
 				null_ls.builtins.formatting.prettier,
 				-- shell / bash

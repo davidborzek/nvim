@@ -49,6 +49,7 @@ M.formatters = {
 	"prettier",
 	"shfmt",
 	"stylua",
+	"goimports",
 }
 
 -- Linters that should be installed by mason
