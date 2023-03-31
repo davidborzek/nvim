@@ -19,7 +19,10 @@ lspconfig.gopls.setup({
 			staticcheck = true,
 		},
 	},
-	on_attach = on_attach,
+	on_attach = function(client, buffer)
+		on_attach(client, buffer)
+		require("core.plugins.dap.go")
+	end,
 })
 
 lspconfig.tsserver.setup({
