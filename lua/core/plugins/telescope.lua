@@ -30,25 +30,25 @@ return {
 		-- git commands
 		{
 			"<leader>gc",
-			"<cmd>Telescope git_commits<CR>",
+			":lua require'core.utils.git'.show_commits()<CR>",
 			desc = "Git commit",
 			silent = true,
 		},
 		{
 			"<leader>gb",
-			"<cmd>Telescope git_branches<CR>",
+			":lua require'core.utils.git'.show_branches()<CR>",
 			desc = "Git branches",
 			silent = true,
 		},
 		{
 			"<leader>gs",
-			"<cmd>Telescope git_status<CR>",
+			":lua require'core.utils.git'.show_status()<CR>",
 			desc = "Git status",
 			silent = true,
 		},
 		{
 			"<leader>gf",
-			"<cmd>Telescope git_files<CR>",
+			":lua require'core.utils.git'.show_files()<CR>",
 			desc = "Git files",
 			silent = true,
 		},
