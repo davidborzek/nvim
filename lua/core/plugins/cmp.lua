@@ -6,7 +6,7 @@ local M = {
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"hrsh7th/vim-vsnip",
+		"saadparwaiz1/cmp_luasnip",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -27,7 +27,7 @@ local M = {
 
 			snippet = {
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 
@@ -37,7 +37,7 @@ local M = {
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lua", keyword_length = 2 },
 				{ name = "buffer", keyword_length = 2 },
-				{ name = "vsnip", keyword_length = 2 },
+				{ name = "luasnip" },
 			},
 
 			window = {
