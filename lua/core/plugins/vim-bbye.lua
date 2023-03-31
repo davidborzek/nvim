@@ -1,5 +1,6 @@
 return {
 	"vds2212/vim-bbye",
+	cmd = "Bdelete",
 	keys = {
 		{
 			"<C-x>",
