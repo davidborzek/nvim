@@ -6,6 +6,7 @@ return {
 		delete_check_events = "TextChanged",
 	},
 	init = function()
+		require("core.plugins.snippets.all")
 		require("core.plugins.snippets.go")
 	end,
 }
