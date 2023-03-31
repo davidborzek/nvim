@@ -1,5 +1,9 @@
-local on_attach = function()
-	vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk", silent = true })
+local on_attach = function(buffer)
+	local function map(mode, l, r, desc)
+		vim.keymap.set(mode, l, r, { buffer = buffer, silent = true, desc = desc })
+	end
+
+	map("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", "Preview hunk")
 end
 
 return {
