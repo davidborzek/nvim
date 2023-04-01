@@ -28,6 +28,7 @@ jdtls.start_or_attach({
 	},
 	on_attach = function(client, bufnr)
 		require("core.plugins.lsp.defaults").on_attach(client, buffer)
+		require("core.plugins.dap.java")
 
 		jdtls.setup_dap({ hotcodereplace = "auto" })
 		jdtls_setup.add_commands()
