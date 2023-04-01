@@ -47,6 +47,13 @@ return {
 			silent = true,
 		},
 		{
+			"<leader>t",
+			"<cmd>Telescope treesitter<CR>",
+			desc = "Treesitter",
+			silent = true,
+		},
+		-- treesitter
+		{
 			"<leader>gf",
 			":lua require'core.utils.git'.show_files()<CR>",
 			desc = "Git files",
