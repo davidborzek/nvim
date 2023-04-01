@@ -24,6 +24,7 @@ function M.on_attach(client, buffer)
 
 	map("n", "gd", ':lua require"telescope.builtin".lsp_definitions()<CR>', "Go to definition")
 	map("n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename occurrences")
+	map({ "n", "i" }, "<A-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code action")
 end
 
 return M
