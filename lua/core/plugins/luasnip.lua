@@ -8,5 +8,6 @@ return {
 	init = function()
 		require("core.plugins.snippets.all")
 		require("core.plugins.snippets.go")
+		require("core.plugins.snippets.java")
 	end,
 }
