@@ -2,6 +2,10 @@ local home = os.getenv("HOME")
 local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 
+local java_utils = require("core.utils.java")
+
+local create_user_command = vim.api.nvim_buf_create_user_command
+
 local root_markers = { "gradlew", "mvnw", ".git" }
 local root_dir = jdtls_setup.find_root(root_markers)
 
@@ -17,6 +21,20 @@ local bundles = {
 	vim.fn.glob(debug_plugin_jar, 1),
 }
 
+local function add_commands(buffer)
+	create_user_command(buffer, "MavenTest", function()
+		java_utils.maven_test()
+	end, { desc = "Test java project using maven." })
+
+	create_user_command(buffer, "MavenTestClass", function()
+		java_utils.maven_test_class()
+	end, { desc = "Test java class using maven." })
+
+	create_user_command(buffer, "MavenTestNearest", function()
+		java_utils.maven_test_nearest()
+	end, { desc = "Test nearest java test using maven." })
+end
+
 -- add vscode-java-test jars to bundles list
 vim.list_extend(bundles, vim.split(vim.fn.glob(vscode_java_test_jars, 1), "\n"))
 
@@ -26,9 +44,11 @@ jdtls.start_or_attach({
 	init_options = {
 		bundles = bundles,
 	},
-	on_attach = function(client, bufnr)
+	on_attach = function(client, buffer)
 		require("core.plugins.lsp.defaults").on_attach(client, buffer)
 		require("core.plugins.dap.java")
+
+		add_commands(buffer)
 
 		jdtls.setup_dap({ hotcodereplace = "auto" })
 		jdtls_setup.add_commands()
@@ -37,7 +57,7 @@ jdtls.start_or_attach({
 		require("dap.ext.vscode").load_launchjs()
 
 		local function buf_set_keymap(...)
-			vim.api.nvim_buf_set_keymap(bufnr, ...)
+			vim.api.nvim_buf_set_keymap(buffer, ...)
 		end
 
 		buf_set_keymap(
