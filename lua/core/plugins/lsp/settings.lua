@@ -21,6 +21,25 @@ lspconfig.gopls.setup({
 	},
 	on_attach = function(client, buffer)
 		on_attach(client, buffer)
+
+		local goutils = require("core.utils.go")
+
+		vim.api.nvim_buf_create_user_command(buffer, "GoTestNearest", function()
+			goutils.test_nearest()
+		end, { desc = "Test nearest go function" })
+
+		vim.api.nvim_buf_create_user_command(buffer, "GoTestFile", function()
+			goutils.test_file()
+		end, { desc = "Test go file" })
+
+		vim.api.nvim_buf_create_user_command(buffer, "GoTestPackage", function()
+			goutils.test_package()
+		end, { desc = "Test go package" })
+
+		vim.api.nvim_buf_create_user_command(buffer, "GoTestAll", function()
+			goutils.test()
+		end, { desc = "Test go project" })
+
 		require("core.plugins.dap.go")
 	end,
 })
