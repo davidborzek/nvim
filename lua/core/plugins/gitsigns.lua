@@ -4,6 +4,7 @@ local on_attach = function(buffer)
 	end
 
 	map("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", "Preview hunk")
+	map("n", "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
 end
 
 return {

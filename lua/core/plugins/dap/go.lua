@@ -16,23 +16,9 @@ dap.adapters.go = {
 dap.configurations.go = {
 	{
 		type = "go",
-		name = "Debug",
+		name = "Launch File",
 		request = "launch",
 		program = "${file}",
-	},
-	{
-		type = "go",
-		name = "Debug test",
-		request = "launch",
-		mode = "test",
-		program = "${file}",
-	},
-	{
-		type = "go",
-		name = "Debug test (go.mod)",
-		request = "launch",
-		mode = "test",
-		program = "./${relativeFileDirname}",
 	},
 }
 
