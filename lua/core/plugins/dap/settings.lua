@@ -11,15 +11,14 @@ M.setup = function(opts)
 	vim.fn.sign_define("DapBreakpoint", { text = "⬤", texthl = "DapBreakbointColor", linehl = "", numhl = "" })
 
 	dap.listeners.after.event_initialized["dap_config"] = function()
-		vim.notify({ "Started!" }, "info", { title = "DAP" })
-
 		if opts.open_repl then
 			dap.repl.open()
 		end
 	end
 
-	map("n", "<leader>dc", ":lua require'dap'.continue()<CR>", { desc = "Start debugging", silent = true })
-	map("n", "<leader>dt", ":lua require'dap'.terminate()<CR>", { desc = "Stop debugging", silent = true })
+	map("n", "<leader>ds", ":lua require'dap'.continue()<CR>", { desc = "Start", silent = true })
+	map("n", "<leader>dl", ":lua require'dap'.run_last()<CR>", { desc = "Start last", silent = true })
+	map("n", "<leader>dt", ":lua require'dap'.terminate()<CR>", { desc = "Terminate", silent = true })
 	map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint", silent = true })
 	map("n", "<leader>do", ":lua require'dap'.step_over()<CR>", { desc = "Step over", silent = true })
 	map("n", "<leader>di", ":lua require'dap'.step_into()<CR>", { desc = "Step into", silent = true })
