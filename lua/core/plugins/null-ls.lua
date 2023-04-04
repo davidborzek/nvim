@@ -1,7 +1,14 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+-- toggle autoformating (default is true)
+local autoformat = true
+
 -- lsp formatting using null-ls
 local format = function(bufnr)
+	if not autoformat then
+		return
+	end
+
 	vim.lsp.buf.format({
 		filter = function(client)
 			return client.name == "null-ls"
@@ -31,6 +38,11 @@ return {
 	},
 	config = function()
 		local null_ls = require("null-ls")
+
+		vim.api.nvim_create_user_command("AutoformatToggle", function()
+			autoformat = not autoformat
+			vim.notify(autoformat and "Auto-format enabled" or "Auto-format disabled", "info", { title = "Format" })
+		end, { desc = "Toggles autoformatting" })
 
 		null_ls.setup({
 			on_attach = on_attach,
