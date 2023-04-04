@@ -62,7 +62,7 @@ local run_maven_test = function(test)
 		mvn_cmd = mvn_cmd .. ' -Dtest="' .. test .. '"'
 	end
 
-	terminal.run(mvn_cmd, true)
+	terminal.run(mvn_cmd, { scroll_bottom = true })
 end
 
 M.maven_test_nearest = function()
