@@ -4,9 +4,19 @@ local M = {}
 
 local map = vim.keymap.set
 
-M.setup = function()
+M.setup = function(opts)
+	opts = opts or {}
+
 	vim.api.nvim_set_hl(0, "DapBreakbointColor", { fg = "#ff0000" })
 	vim.fn.sign_define("DapBreakpoint", { text = "⬤", texthl = "DapBreakbointColor", linehl = "", numhl = "" })
+
+	dap.listeners.after.event_initialized["dap_config"] = function()
+		vim.notify({ "Started!" }, "info", { title = "DAP" })
+
+		if opts.open_repl then
+			dap.repl.open()
+		end
+	end
 
 	map("n", "<leader>dc", ":lua require'dap'.continue()<CR>", { desc = "Start debugging", silent = true })
 	map("n", "<leader>dt", ":lua require'dap'.terminate()<CR>", { desc = "Stop debugging", silent = true })

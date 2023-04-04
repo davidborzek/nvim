@@ -36,4 +36,4 @@ dap.configurations.go = {
 	},
 }
 
-require("core.plugins.dap.settings").setup()
+require("core.plugins.dap.settings").setup({ open_repl = true })
