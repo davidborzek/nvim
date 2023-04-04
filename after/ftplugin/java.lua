@@ -21,7 +21,32 @@ local bundles = {
 	vim.fn.glob(debug_plugin_jar, 1),
 }
 
+local function parse_java_test_result(items)
+	local count = 0
+	for _ in pairs(items) do
+		count = count + 1
+	end
+
+	if count > 0 then
+		vim.notify({ count .. " test(s) failed!", "See dap-repl for results." }, "error", { title = "Java Test" })
+	else
+		vim.notify({ "Pass!", "See dap-repl for results." }, "info", { title = "Java Test" })
+	end
+end
+
 local function add_commands(buffer)
+	create_user_command(buffer, "JavaTestClass", function()
+		require("jdtls").test_class({
+			after_test = parse_java_test_result,
+		})
+	end, { desc = "Test java class." })
+
+	create_user_command(buffer, "JavaTestNearest", function()
+		require("jdtls").test_nearest_method({
+			after_test = parse_java_test_result,
+		})
+	end, { desc = "Test nearest java test." })
+
 	create_user_command(buffer, "MavenTest", function()
 		java_utils.maven_test()
 	end, { desc = "Test java project using maven." })
