@@ -1,6 +1,6 @@
 local dap = require("dap")
 
-dap.adapters.delve = {
+dap.adapters.go = {
 	type = "server",
 	port = "${port}",
 	executable = {
@@ -15,20 +15,20 @@ dap.adapters.delve = {
 
 dap.configurations.go = {
 	{
-		type = "delve",
+		type = "go",
 		name = "Debug",
 		request = "launch",
 		program = "${file}",
 	},
 	{
-		type = "delve",
+		type = "go",
 		name = "Debug test",
 		request = "launch",
 		mode = "test",
 		program = "${file}",
 	},
 	{
-		type = "delve",
+		type = "go",
 		name = "Debug test (go.mod)",
 		request = "launch",
 		mode = "test",
