@@ -63,4 +63,7 @@ M.dap_tools = {
 	"java-test",
 }
 
+-- path to sdkman
+M.sdkman_path = os.getenv("SDKMAN_DIR")
+
 return M

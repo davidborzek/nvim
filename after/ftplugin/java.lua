@@ -3,6 +3,7 @@ local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 
 local java_utils = require("core.utils.java")
+local sdkman = require("core.utils.sdkman")
 
 local create_user_command = vim.api.nvim_buf_create_user_command
 
@@ -71,11 +72,20 @@ end
 -- add vscode-java-test jars to bundles list
 vim.list_extend(bundles, vim.split(vim.fn.glob(vscode_java_test_jars, 1), "\n"))
 
+local java_runtimes = sdkman.get_installed_java_versions() or {}
+
 jdtls.start_or_attach({
 	cmd = { "jdtls", string.format("--jvm-arg=-javaagent:%s", lombok_jar) },
 	root_dir = root_dir,
 	init_options = {
 		bundles = bundles,
+	},
+	settings = {
+		java = {
+			configuration = {
+				runtimes = java_runtimes,
+			},
+		},
 	},
 	on_attach = function(client, buffer)
 		require("core.plugins.lsp.defaults").on_attach(client, buffer)
