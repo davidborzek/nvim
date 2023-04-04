@@ -1,4 +1,5 @@
 local ts = require("core.utils.treesitter")
+local terminal = require("core.utils.terminal")
 
 local M = {}
 
@@ -63,7 +64,7 @@ M.test_file = function()
 end
 
 M.test = function()
-	vim.cmd("!go test -v ./...")
+	terminal.run("go test -v ./...", { scroll_bottom = true })
 end
 
 return M
