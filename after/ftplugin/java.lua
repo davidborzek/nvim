@@ -58,6 +58,10 @@ local function add_commands(buffer)
 	create_user_command(buffer, "MavenTestNearest", function()
 		java_utils.maven_test_nearest()
 	end, { desc = "Test nearest java test using maven." })
+
+	create_user_command(buffer, "MavenSync", function()
+		java_utils.maven_sync()
+	end, { desc = "Sync maven dependencies." })
 end
 
 -- add vscode-java-test jars to bundles list

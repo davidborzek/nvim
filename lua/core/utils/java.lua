@@ -50,13 +50,21 @@ local get_full_class_name = function()
 	return package .. "." .. class
 end
 
-local run_maven_test = function(test)
-	local mvn_cmd = vim.fn.findfile("mvnw")
-	if mvn_cmd ~= "" then
-		mvn_cmd = "./mvnw test"
+local get_maven_cmd = function()
+	if vim.fn.findfile("mvnw") ~= "" then
+		return "./mvnw"
 	else
-		mvn_cmd = "mvn test"
+		if vim.fn.executable("mvn") == 0 then
+			vim.notify({ "Maven not found in path." }, "error", { title = "Maven" })
+			return
+		end
+
+		return "mvn"
 	end
+end
+
+local run_maven_test = function(test)
+	local mvn_cmd = get_maven_cmd() .. " test"
 
 	if test then
 		mvn_cmd = mvn_cmd .. ' -Dtest="' .. test .. '"'
@@ -95,6 +103,10 @@ end
 
 M.maven_test = function()
 	run_maven_test()
+end
+
+M.maven_sync = function()
+	vim.cmd("!" .. get_maven_cmd() .. " dependency:resolve")
 end
 
 return M
