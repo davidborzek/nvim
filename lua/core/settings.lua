@@ -50,6 +50,7 @@ M.formatters = {
 	"shfmt",
 	"stylua",
 	"goimports",
+	"google-java-format",
 }
 
 -- Linters that should be installed by mason

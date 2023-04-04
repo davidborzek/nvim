@@ -50,6 +50,8 @@ return {
 				null_ls.builtins.formatting.stylua,
 				-- rust
 				null_ls.builtins.formatting.rustfmt,
+				-- java
+				null_ls.builtins.formatting.google_java_format,
 			},
 		})
 	end,
