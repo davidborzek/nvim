@@ -12,3 +12,6 @@ vim.opt.tabstop = 4
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
+
+vim.o.splitright = true
+vim.o.splitbelow = true
