@@ -1,9 +1,23 @@
 local ts = require("core.utils.treesitter")
+local common = require("core.utils.common")
 local ts_utils = require("nvim-treesitter.ts_utils")
 
 local terminal = require("core.utils.terminal")
 
 local M = {}
+
+local junit_test_class_template = [[
+package %s;
+
+import org.junit.jupiter.api.Test;
+
+class %s {
+	@Test
+	void test() {
+	}
+
+}
+]]
 
 local get_method_name = function()
 	return ts.find_child_node_name_by_type("method_declaration", "identifier")
@@ -107,6 +121,35 @@ end
 
 M.maven_sync = function()
 	vim.cmd("!" .. get_maven_cmd() .. " dependency:resolve")
+end
+
+-- creates or opens a junit test class for the class in the current opened buffer
+M.create_junit_test = function()
+	local package = get_package_name()
+	if not package then
+		vim.notify({ "Failed create test.", "Could not get package name." }, "error", { title = "Java Test" })
+		return
+	end
+
+	local class = get_class_name()
+	if not class then
+		vim.notify({ "Failed to create test.", "Could not get class name." }, "error", { title = "Java Test" })
+		return
+	end
+
+	local test_dir = string.gsub(vim.fn.expand("%:p:h"), "/main/", "/test/")
+	if test_dir == "" then
+		vim.notify({ "Failed to create test.", "Could not get directory path." }, "error", { title = "Java Test" })
+		return
+	end
+
+	local test_class_name = class .. "Test"
+	local test_class_path = test_class_name .. ".java"
+
+	common.create_or_open_file(test_dir, test_class_path, {
+		ft = "java",
+		content = string.format(junit_test_class_template, package, test_class_name),
+	})
 end
 
 return M

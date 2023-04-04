@@ -47,6 +47,10 @@ local function add_commands(buffer)
 		})
 	end, { desc = "Test nearest java test." })
 
+	create_user_command(buffer, "JavaCreateTest", function()
+		java_utils.create_junit_test()
+	end, { desc = "Test nearest java test." })
+
 	create_user_command(buffer, "MavenTest", function()
 		java_utils.maven_test()
 	end, { desc = "Test java project using maven." })
