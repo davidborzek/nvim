@@ -2,6 +2,8 @@ local home = os.getenv("HOME")
 local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 
+local keys = require("core.keys")
+
 local java_utils = require("core.utils.java")
 local sdkman = require("core.utils.sdkman")
 
@@ -99,27 +101,6 @@ jdtls.start_or_attach({
 		-- load .vscode/launch.json
 		require("dap.ext.vscode").load_launchjs()
 
-		local function buf_set_keymap(...)
-			vim.api.nvim_buf_set_keymap(buffer, ...)
-		end
-
-		buf_set_keymap(
-			"n",
-			"<leader>i",
-			"<Cmd>lua require'jdtls'.organize_imports()<CR>",
-			{ desc = "Organize imports (Java)", silent = true }
-		)
-		buf_set_keymap(
-			"v",
-			"<leader>em",
-			"<Esc><Cmd>lua require'jdtls'.extract_method(true)<CR>",
-			{ desc = "Extract method (Java)", silent = true }
-		)
-		buf_set_keymap(
-			"n",
-			"<leader>u",
-			"<Cmd>lua require'jdtls'.update_project_config()<CR>",
-			{ desc = "Update project config (Java)", silent = true }
-		)
+		keys.map_java_lsp_keys(buffer)
 	end,
 })

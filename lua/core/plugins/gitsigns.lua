@@ -1,10 +1,7 @@
-local on_attach = function(buffer)
-	local function map(mode, l, r, desc)
-		vim.keymap.set(mode, l, r, { buffer = buffer, silent = true, desc = desc })
-	end
+local keys = require("core.keys")
 
-	map("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", "Preview hunk")
-	map("n", "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
+local on_attach = function(buffer)
+	keys.map_gitsigns_keys(buffer)
 end
 
 return {
