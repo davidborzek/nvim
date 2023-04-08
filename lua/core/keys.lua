@@ -22,12 +22,12 @@ function M.map_lsp_keys(buffer)
 		_map("n", "<leader>lr", ':lua require"telescope.builtin".lsp_references()<CR>', "LSP references")
 		_map("n", "<leader>ld", ':lua require"telescope.builtin".lsp_definitions()<CR>', "LSP definitions")
 		_map("n", "<leader>li", ':lua require"telescope.builtin".lsp_implementations()<CR>', "LSP implementations")
-		_map("n", "<leader>lh", ':lua require"telescope.builtin".lsp_diagnostics()<CR>', "LSP diagnostics")
+		_map("n", "<leader>lh", ':lua require"telescope.builtin".diagnostics()<CR>', "LSP diagnostics")
 		_map(
 			"n",
-			"<leader>lh",
+			"<leader>lH",
 			':lua  require"telescope.builtin".diagnostics({ bufnr = 0 })<CR>',
-			"LSP diagnostics (current buffer))"
+			"LSP diagnostics (current buffer)"
 		)
 
 		_map("n", "gd", ':lua require"telescope.builtin".lsp_definitions()<CR>', "Go to definition")
