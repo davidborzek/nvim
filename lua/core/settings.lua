@@ -35,6 +35,8 @@ M.treesitter_ensure_installed = {
 M.lsp_servers = {
 	"ansiblels",
 	"bashls",
+	"cssls",
+	"cssmodules_ls",
 	"gopls",
 	"jdtls",
 	"jsonls",

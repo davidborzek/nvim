@@ -3,8 +3,25 @@ local util = require("lspconfig/util")
 
 local on_attach = require("core.plugins.lsp.defaults").on_attach
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
 lspconfig.bashls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+lspconfig.cssls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+lspconfig.cssmodules_ls.setup({
+	on_attach = function(client, buffer)
+		client.server_capabilities.definitionProvider = false
+		on_attach(client, buffer)
+	end,
+	capabilities = capabilities,
 })
 
 lspconfig.gopls.setup({
@@ -19,6 +36,7 @@ lspconfig.gopls.setup({
 			staticcheck = true,
 		},
 	},
+	capabilities = capabilities,
 	on_attach = function(client, buffer)
 		on_attach(client, buffer)
 
@@ -45,6 +63,7 @@ lspconfig.gopls.setup({
 })
 
 lspconfig.tsserver.setup({
+	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
@@ -58,20 +77,25 @@ lspconfig.yamlls.setup({
 		},
 	},
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 lspconfig.jsonls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 lspconfig.ansiblels.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
