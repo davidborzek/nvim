@@ -8,6 +8,7 @@ return {
 		require("lualine").setup({
 			options = {
 				globalstatus = true,
+				theme = "dracula-nvim",
 			},
 			extensions = { "nvim-tree" },
 		})
