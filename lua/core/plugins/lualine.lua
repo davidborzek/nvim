@@ -9,6 +9,7 @@ return {
 			options = {
 				globalstatus = true,
 			},
+			extensions = { "nvim-tree" },
 		})
 	end,
 }
