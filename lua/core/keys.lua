@@ -16,6 +16,9 @@ map("n", "<leader>Q", ":wqa<CR>", { desc = "Exit and save all", silent = true })
 -- save all
 map("n", "<leader>w", ":wa<CR>", { desc = "Save all", silent = true })
 
+-- copy to system clipboard
+map("v", "<leader>c", '"+y', { desc = "Copy to system clipboard", silent = true })
+
 -- map lsp keys used by on_attach
 function M.map_lsp_keys(buffer)
 	utils.map_buffer_keys(buffer, function(_map)
