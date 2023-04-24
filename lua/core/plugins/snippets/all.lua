@@ -6,21 +6,33 @@ local p = extras.partial
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
 
--- returns to current unix timestamp as string
+-- returns the current unix timestamp as string
 local timestamp = function()
 	return tostring(os.time())
 end
 
--- generates a uuid via uuidgen
+-- generates a uuid
 local uuidgen = function()
-	if vim.fn.executable("uuidgen") == 0 then
-		vim.notify({ "Could not generate uuid: ", "'uuidgen' not found in path." }, "error", { title = "Snippets" })
-		return
+	local template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+	return string.gsub(template, "[xy]", function(c)
+		local v = (c == "x") and math.random(0, 0xf) or math.random(8, 0xb)
+		return string.format("%x", v)
+	end)
+end
+
+-- generates a random password
+local pwgen = function(length, special_chars)
+	local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	if special_chars then
+		chars = chars .. "!@#$%^&*()-_=+[{]}\\|;:'\",<.>/?"
 	end
 
-	local uuid = vim.fn.system("uuidgen")
-	uuid = string.gsub(uuid, "%s+", "")
-	return uuid
+	local password = ""
+	for _ = 1, length do
+		local char_pos = math.random(1, #chars)
+		password = password .. string.sub(chars, char_pos, char_pos)
+	end
+	return password
 end
 
 ls.add_snippets("all", {
@@ -37,4 +49,10 @@ ls.add_snippets("all", {
 	s("url", fmt("https://{}:{}", { i(1, "localhost"), i(2, "8080") })),
 	-- misc
 	s("uuid", p(uuidgen)),
+	-- pwgen
+	s("pwgen", p(pwgen, 32, false)),
+	s("pwgen_special", p(pwgen, 32, true)),
+	s("pwgen16", p(pwgen, 16, false)),
+	s("pwgen48", p(pwgen, 48, false)),
+	s("pwgen64", p(pwgen, 64, false)),
 })
