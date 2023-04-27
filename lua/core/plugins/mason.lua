@@ -3,6 +3,7 @@ local settings = require("core.settings")
 -- helper function to install packages via mason
 local mason_install = function(packages)
 	local registry = require("mason-registry")
+	registry.refresh()
 	for _, pkg_name in ipairs(packages) do
 		local p = registry.get_package(pkg_name)
 		if not p:is_installed() then
