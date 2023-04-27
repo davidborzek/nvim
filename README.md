@@ -29,7 +29,7 @@
 - Linting integration and toggleable auto-formatting with [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - VS code like winbar via [barbecue.nvim](https://github.com/utilyre/barbecue.nvim)
 - Git integration via [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- Indent guides powered by [https://github.com/lukas-reineke/indent-blankline.nvim](indent-blankline.nvim)
+- Indent guides powered by [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim])
 - Snippets with auto completion via [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - Configured Language Servers for Bash, (S)CSS, Golang, TypeScript, YAML, Lua, JSON, Rust, Ansible and Java.
 
