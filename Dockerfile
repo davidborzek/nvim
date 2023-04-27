@@ -1,14 +1,29 @@
-FROM alpine:edge
+FROM archlinux:latest
 
-RUN apk add git neovim ripgrep tree-sitter alpine-sdk go nodejs npm bash unzip wget gzip --update
+RUN pacman -Syu --noconfirm
 
-RUN adduser -D test
+RUN pacman -S --noconfirm \
+    git \
+    neovim \
+    ripgrep \
+    tree-sitter \
+    go \
+    nodejs \
+    npm \
+    base-devel \
+    bash \
+    unzip \
+    wget \
+    gzip
 
-WORKDIR /home/test/.config/nvim
 
-COPY . .
+RUN useradd -m -U -s /bin/bash nvim
+USER nvim
+WORKDIR /home/nvim
 
-RUN chown -R test:test /home/test/
+COPY --chown=nvim:nvim . .config/nvim
 
-USER test
-ENTRYPOINT [ "ash" ]
+ENTRYPOINT [ "bash" ]
+
+
+
