@@ -35,6 +35,7 @@
 - Indent guides powered by [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim])
 - Snippets with auto completion via [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - Configured Language Servers for Bash, (S)CSS, Golang, TypeScript, YAML, Lua, JSON, Rust, Ansible and Java.
+- View/Edit Ansible Vault files
 
 ## Try it out
 
