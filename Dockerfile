@@ -23,7 +23,4 @@ WORKDIR /home/nvim
 
 COPY --chown=nvim:nvim . .config/nvim
 
-ENTRYPOINT [ "bash" ]
-
-
-
+ENTRYPOINT [ "nvim" ]
