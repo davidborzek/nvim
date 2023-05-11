@@ -19,6 +19,17 @@ map("n", "<leader>w", ":wa<CR>", { desc = "Save all", silent = true })
 -- copy to system clipboard
 map("v", "<leader>c", '"+y', { desc = "Copy to system clipboard", silent = true })
 
+-- jump to next snippet selection
+map("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<cr>", { desc = "Jump to next snippet selection", silent = true })
+
+-- jump to previous snippet selection
+map(
+	"s",
+	"<S-Tab>",
+	"<cmd>lua require('luasnip').jump(-1)<cr>",
+	{ desc = "Jump to previous snippet selection", silent = true }
+)
+
 -- map lsp keys used by on_attach
 function M.map_lsp_keys(buffer)
 	utils.map_buffer_keys(buffer, function(_map)
