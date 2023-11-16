@@ -6,7 +6,7 @@ return {
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	cmd = "Telescope",
-	tag = "0.1.1",
+	tag = "0.1.4",
 	keys = {
 		-- file / buffer commands
 		{
