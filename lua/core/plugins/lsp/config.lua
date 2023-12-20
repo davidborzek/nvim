@@ -1,33 +1,11 @@
-local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
 local home = os.getenv("HOME")
 local mason_dir = home .. "/.local/share/nvim/mason"
 
-local on_attach = require("core.plugins.lsp.defaults").on_attach
+local M = {}
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-lspconfig.bashls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig.cssls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig.cssmodules_ls.setup({
-	on_attach = function(client, buffer)
-		client.server_capabilities.definitionProvider = false
-		on_attach(client, buffer)
-	end,
-	capabilities = capabilities,
-})
-
-lspconfig.gopls.setup({
+M.gopls = {
 	cmd = { "gopls", "serve" },
 	filetypes = { "go", "gomod" },
 	root_dir = util.root_pattern("go.mod"),
@@ -39,10 +17,7 @@ lspconfig.gopls.setup({
 			staticcheck = true,
 		},
 	},
-	capabilities = capabilities,
-	on_attach = function(client, buffer)
-		on_attach(client, buffer)
-
+	on_attach = function(_, buffer)
 		local goutils = require("core.utils.go")
 
 		vim.api.nvim_buf_create_user_command(buffer, "GoTestNearest", function()
@@ -63,14 +38,15 @@ lspconfig.gopls.setup({
 
 		require("core.plugins.dap.go")
 	end,
-})
+}
 
-lspconfig.tsserver.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
+M.cssmodules_ls = {
+	on_attach = function(client, _)
+		client.server_capabilities.definitionProvider = false
+	end,
+}
 
-lspconfig.yamlls.setup({
+M.yamlls = {
 	settings = {
 		yaml = {
 			schemas = {
@@ -79,13 +55,9 @@ lspconfig.yamlls.setup({
 			},
 		},
 	},
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+}
 
-lspconfig.lua_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+M.lua_ls = {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -94,29 +66,10 @@ lspconfig.lua_ls.setup({
 			},
 		},
 	},
-})
+}
 
-lspconfig.jsonls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig.rust_analyzer.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig.ansiblels.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig.perlnavigator.setup({
-	on_attach = on_attach,
+M.perlnavigator = {
 	cmd = { mason_dir .. "/bin/perlnavigator", "--stdio" },
-})
+}
 
-lspconfig.pyright.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+return M
