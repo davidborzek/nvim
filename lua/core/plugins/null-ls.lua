@@ -31,6 +31,18 @@ local on_attach = function(client, bufnr)
 	end
 end
 
+local function eslint_condition(utils)
+	return utils.root_has_file({
+		"eslint.config.js",
+		".eslintrc",
+		".eslintrc.js",
+		".eslintrc.cjs",
+		".eslintrc.yaml",
+		".eslintrc.yml",
+		".eslintrc.json",
+	})
+end
+
 return {
 	"jose-elias-alvarez/null-ls.nvim",
 	dependencies = {
@@ -48,8 +60,12 @@ return {
 			on_attach = on_attach,
 			sources = {
 				-- eslint
-				null_ls.builtins.diagnostics.eslint,
-				null_ls.builtins.code_actions.eslint,
+				null_ls.builtins.diagnostics.eslint.with({
+					condition = eslint_condition,
+				}),
+				null_ls.builtins.code_actions.eslint.with({
+					condition = eslint_condition,
+				}),
 				-- golang
 				null_ls.builtins.diagnostics.staticcheck,
 				null_ls.builtins.formatting.gofmt,
