@@ -42,7 +42,7 @@ M.lsp_servers = {
 	"jsonls",
 	"lua_ls",
 	"perlnavigator",
-	"pylsp",
+	"pyright",
 	"rust_analyzer",
 	"tsserver",
 	"yamlls",

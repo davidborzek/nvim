@@ -116,7 +116,7 @@ lspconfig.perlnavigator.setup({
 	cmd = { mason_dir .. "/bin/perlnavigator", "--stdio" },
 })
 
-lspconfig.pylsp.setup({
+lspconfig.pyright.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
