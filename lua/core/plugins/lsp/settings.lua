@@ -1,6 +1,9 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
+local home = os.getenv("HOME")
+local mason_dir = home .. "/.local/share/nvim/mason"
+
 local on_attach = require("core.plugins.lsp.defaults").on_attach
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -104,6 +107,16 @@ lspconfig.rust_analyzer.setup({
 })
 
 lspconfig.ansiblels.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+lspconfig.perlnavigator.setup({
+	on_attach = on_attach,
+	cmd = { mason_dir .. "/bin/perlnavigator", "--stdio" },
+})
+
+lspconfig.pylsp.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
