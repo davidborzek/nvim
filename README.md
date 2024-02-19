@@ -23,6 +23,7 @@
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) for modern looking selections and searching
 - Better statusline with [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - Browser markdown preview using [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)
+- [nvim-neoclip](https://github.com/AckslD/nvim-neoclip.lua) for a yank clipboard manager
 
 ### Coding
 
@@ -35,23 +36,15 @@
 - Git integration via [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - Indent guides powered by [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim])
 - Snippets with auto completion via [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- Configured Language Servers for Bash, (S)CSS, Golang, TypeScript, YAML, Lua, JSON, Rust, Ansible and Java.
+- Configured Language Servers for Bash, (S)CSS, Golang, TypeScript, YAML, Lua, JSON, Rust, Ansible, Java, Perl and Python.
 - View/Edit Ansible Vault files
 
 ## Try it out
 
-You can easily try this setup using [Docker](https://www.docker.com/) using the provided `Dockerfile`.
-
-### Build the image
+You can easily try this setup using [Docker](https://www.docker.com/).
 
 ```bash
-docker build -t nvim .
-```
-
-### Start nvim
-
-```bash
-docker run --rm -it nvim
+docker run --rm -it ghcr.io/davidborzek/nvim
 ```
 
 > Info: You can also mount a local directory into the container using the `-v` flag.
