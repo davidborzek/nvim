@@ -17,15 +17,18 @@ for _, lsp in pairs(lsp_servers) do
 		goto continue
 	end
 
+	-- Find custom lsp config
 	local config = lsp_config[lsp] or {}
-	if config.on_attach ~= nil then
+	local custom_on_attach = config.on_attach
+	if custom_on_attach ~= nil then
 		config.on_attach = function(client, buffer)
 			on_attach(client, buffer)
-			config.on_attach(client, buffer)
+			custom_on_attach(client, buffer)
 		end
+	else
+		config.on_attach = on_attach
 	end
 
-	config.on_attach = on_attach
 	config.capabilities = capabilities
 
 	lspconfig[lsp].setup(config)
