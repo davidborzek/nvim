@@ -2,7 +2,7 @@
 
 <div align="center">
     <a href="https://github.com/neovim/neovim">
-        <img src="https://img.shields.io/badge/Neovim-0.9.5-blueviolet.svg?style=flat-square&logo=Neovim&color=f1a7e2&logoColor=white" alt="Neovim"/>
+        <img src="https://img.shields.io/badge/Neovim-0.10.0-blueviolet.svg?style=flat-square&logo=Neovim&color=f1a7e2&logoColor=white" alt="Neovim"/>
     </a>
     <a href="https://github.com/davidborzek/nvim/actions/workflows/docker.yml">
         <img src="https://github.com/davidborzek/nvim/actions/workflows/docker.yml/badge.svg?branch=main" alt="Build"/>
