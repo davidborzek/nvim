@@ -24,6 +24,7 @@
 - Better statusline with [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - Browser markdown preview using [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)
 - [nvim-neoclip](https://github.com/AckslD/nvim-neoclip.lua) for a yank clipboard manager
+- Improved motions via [hop.nvim](https://github.com/hadronized/hop.nvim)
 
 ### Coding
 
