@@ -42,6 +42,10 @@ map("t", "<C-q>", [[<C-\><C-n>:Bdelete!<CR>]], { desc = "Close terminal", silent
 -- map lsp keys used by on_attach
 function M.map_lsp_keys(buffer)
 	utils.map_buffer_keys(buffer, function(_map)
+		_map("n", "K", ":lua vim.lsp.buf.hover()<CR>", "LSP docs")
+		_map("n", "<leader>lk", ":lua vim.lsp.buf.hover()<CR>", "LSP docs")
+		_map("n", "<leader>ln", ":lua vim.diagnostic.goto_next()<CR>", "LSP Go to next diagnostic")
+		_map("n", "<leader>lN", ":lua vim.diagnostic.open_float()<CR>", "LSP Preview diagnostic")
 		_map("n", "<leader>lr", ':lua require"telescope.builtin".lsp_references()<CR>', "LSP references")
 		_map("n", "<leader>ld", ':lua require"telescope.builtin".lsp_definitions()<CR>', "LSP definitions")
 		_map("n", "<leader>li", ':lua require"telescope.builtin".lsp_implementations()<CR>', "LSP implementations")
