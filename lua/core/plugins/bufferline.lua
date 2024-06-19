@@ -1,3 +1,12 @@
+local function go_to_nth_buffer(num)
+	return {
+		"<leader>" .. num,
+		":lua require'bufferline'.go_to(" .. num .. ", true)<CR>",
+		desc = "which_key_ignore",
+		silent = true,
+	}
+end
+
 return {
 	"akinsho/bufferline.nvim",
 	event = "VeryLazy",
@@ -18,5 +27,16 @@ return {
 				},
 			},
 		},
+	},
+	keys = {
+		go_to_nth_buffer(1),
+		go_to_nth_buffer(2),
+		go_to_nth_buffer(3),
+		go_to_nth_buffer(4),
+		go_to_nth_buffer(5),
+		go_to_nth_buffer(6),
+		go_to_nth_buffer(7),
+		go_to_nth_buffer(8),
+		go_to_nth_buffer(9),
 	},
 }
