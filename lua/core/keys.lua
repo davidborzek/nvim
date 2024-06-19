@@ -87,8 +87,8 @@ end
 -- map key for git
 function M.map_gitsigns_keys(buffer)
 	utils.map_buffer_keys(buffer, function(_map)
-		_map("n", "<leader>ghp", ":Gitsigns preview_hunk<CR>", "Preview hunk")
-		_map("n", "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
+		_map("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", "Preview hunk")
+		_map("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
 	end)
 end
 
