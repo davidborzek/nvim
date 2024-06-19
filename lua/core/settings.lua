@@ -60,7 +60,9 @@ M.formatters = {
 }
 
 -- Linters that should be installed by mason
-M.linters = {}
+M.linters = {
+	"staticcheck",
+}
 
 -- Debug tools that should be installed by mason
 M.dap_tools = {
