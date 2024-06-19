@@ -3,6 +3,7 @@ local M = {}
 -- treesitter parsers to be installed
 M.treesitter_ensure_installed = {
 	"bash",
+	"c",
 	"css",
 	"dockerfile",
 	"fish",
@@ -28,6 +29,7 @@ M.treesitter_ensure_installed = {
 	"tsx",
 	"typescript",
 	"vim",
+	"vimdoc",
 	"yaml",
 }
 
