@@ -15,6 +15,7 @@ M.treesitter_ensure_installed = {
 	"java",
 	"javascript",
 	"json",
+	"latex",
 	"lua",
 	"markdown",
 	"markdown_inline",
@@ -46,6 +47,7 @@ M.lsp_servers = {
 	"perlnavigator",
 	"pyright",
 	"rust_analyzer",
+	"texlab",
 	"tsserver",
 	"yamlls",
 }
