@@ -1,9 +1,36 @@
 local util = require("lspconfig/util")
+local tex = require("core.utils.tex")
 
 local home = os.getenv("HOME")
 local mason_dir = home .. "/.local/share/nvim/mason"
 
 local M = {}
+
+M.texlab = {
+	on_attach = function(_, buffer)
+		vim.api.nvim_create_augroup("TexCompileOnSave", { clear = false })
+		vim.api.nvim_clear_autocmds({ group = "TexCompileOnSave", buffer = buffer })
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = "TexCompileOnSave",
+			buffer = buffer,
+			callback = function()
+				tex.compile("main.tex", "out", false)
+			end,
+		})
+
+		vim.api.nvim_buf_create_user_command(buffer, "TexView", function()
+			vim.cmd("silent !zathura out/main.pdf &")
+		end, { desc = "View the pdf file." })
+
+		vim.api.nvim_buf_create_user_command(buffer, "TexCompile", function()
+			tex.compile("main.tex", "out", false)
+		end, { desc = "Compile the main.tex file as pdf" })
+
+		vim.api.nvim_buf_create_user_command(buffer, "TexClean", function()
+			vim.cmd("silent !rm -rf out")
+		end, { desc = "Clean the output files." })
+	end,
+}
 
 M.gopls = {
 	cmd = { "gopls", "serve" },
