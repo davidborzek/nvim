@@ -19,15 +19,19 @@ M.texlab = {
 		})
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexView", function()
-			vim.cmd("silent !zathura out/main.pdf &")
+			tex.view("out")
 		end, { desc = "View the pdf file." })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexCompile", function()
 			tex.compile("main.tex", "out", false)
 		end, { desc = "Compile the main.tex file as pdf" })
 
+		vim.api.nvim_buf_create_user_command(buffer, "TexLogs", function()
+			tex.logs("out")
+		end, { desc = "Clean the output files." })
+
 		vim.api.nvim_buf_create_user_command(buffer, "TexClean", function()
-			vim.cmd("silent !rm -rf out")
+			tex.clean("out")
 		end, { desc = "Clean the output files." })
 	end,
 }
