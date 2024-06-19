@@ -18,4 +18,16 @@ M.compile = function(file, out, notify)
 	end
 end
 
+M.logs = function(out)
+	vim.cmd("e " .. out .. "/main.log")
+end
+
+M.clean = function(out)
+	vim.cmd("silent !rm -rf " .. out)
+end
+
+M.view = function(out)
+	vim.cmd("silent !zathura " .. out .. "/main.pdf &")
+end
+
 return M
