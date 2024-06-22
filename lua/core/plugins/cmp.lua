@@ -11,6 +11,13 @@ local M = {
 	config = function()
 		local cmp = require("cmp")
 
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
 		cmp.setup({
 			mapping = {
 				["<S-Tab>"] = cmp.mapping.select_prev_item(),
