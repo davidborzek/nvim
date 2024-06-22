@@ -7,9 +7,11 @@ local M = {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
+		"onsails/lspkind.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
+		local lspkind = require("lspkind")
 
 		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),
@@ -53,17 +55,12 @@ local M = {
 			},
 
 			formatting = {
-				fields = { "menu", "abbr", "kind" },
-				format = function(entry, item)
-					local menu_icon = {
-						nvim_lsp = "λ",
-						vsnip = "⋗",
-						buffer = "b",
-						path = "p",
-					}
-					item.menu = menu_icon[entry.source.name]
-					return item
-				end,
+				format = lspkind.cmp_format({
+					mode = "symbol_text",
+					maxwidth = 50,
+					ellipsis_char = "...",
+					show_labelDetails = true,
+				}),
 			},
 		})
 	end,
