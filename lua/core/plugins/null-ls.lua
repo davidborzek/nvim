@@ -77,7 +77,9 @@ return {
 				-- lua
 				null_ls.builtins.formatting.stylua,
 				-- rust
-				null_ls.builtins.formatting.rustfmt,
+				null_ls.builtins.formatting.rustfmt.with({
+					extra_args = { "--edition", "2021" },
+				}),
 				-- java
 				null_ls.builtins.formatting.google_java_format,
 			},
