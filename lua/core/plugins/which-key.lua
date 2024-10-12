@@ -7,10 +7,8 @@ return {
 	config = function(_, opts)
 		local wk = require("which-key")
 		wk.setup(opts)
-		local keymaps = {
-			mode = { "n", "v" },
-			["<leader>g"] = { name = "+git" },
-		}
-		wk.register(keymaps)
+		wk.add({
+			{ "<leader>g", mode = { "n", "v" }, group = "git" },
+		})
 	end,
 }
