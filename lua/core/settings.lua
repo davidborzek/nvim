@@ -48,7 +48,7 @@ M.lsp_servers = {
 	"pyright",
 	"rust_analyzer",
 	"texlab",
-	"tsserver",
+	"ts_ls",
 	"yamlls",
 }
 
