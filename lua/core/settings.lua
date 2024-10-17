@@ -56,6 +56,7 @@ M.lsp_servers = {
 
 -- Formatters that should be installed by mason
 M.formatters = {
+	"nixpkgs-fmt",
 	"prettier",
 	"shfmt",
 	"stylua",

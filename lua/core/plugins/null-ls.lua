@@ -82,6 +82,8 @@ return {
 				}),
 				-- java
 				null_ls.builtins.formatting.google_java_format,
+				-- nixpkgs-fmt
+				null_ls.builtins.formatting.nixpkgs_fmt,
 			},
 		})
 	end,
