@@ -15,3 +15,5 @@ vim.o.timeoutlen = 300
 
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+vim.o.spelllang = "en,de"
