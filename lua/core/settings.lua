@@ -79,4 +79,10 @@ M.dap_tools = {
 -- path to sdkman
 M.sdkman_path = os.getenv("SDKMAN_DIR")
 
+-- the tex file to compile
+M.tex_file = "main"
+
+-- the output directory of the tex compilation
+M.tex_output_dir = "out"
+
 return M

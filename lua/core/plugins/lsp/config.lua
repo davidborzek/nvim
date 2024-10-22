@@ -14,24 +14,24 @@ M.texlab = {
 			group = "TexCompileOnSave",
 			buffer = buffer,
 			callback = function()
-				tex.compile("main.tex", "out")
+				tex.compile()
 			end,
 		})
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexView", function()
-			tex.view("out")
+			tex.view()
 		end, { desc = "View the pdf file." })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexCompile", function()
-			tex.compile("main.tex", "out")
-		end, { desc = "Compile the main.tex file as pdf" })
+			tex.compile()
+		end, { desc = "Compile the main TeX file (usually main.tex) file as pdf" })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexLogs", function()
-			tex.logs("out")
-		end, { desc = "Clean the output files." })
+			tex.logs()
+		end, { desc = "Show latest compilation logs." })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexClean", function()
-			tex.clean("out")
+			tex.clean()
 		end, { desc = "Clean the output files." })
 	end,
 }

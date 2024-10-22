@@ -1,4 +1,12 @@
-local M = {}
+local settings = require("core.settings")
+
+local function get_out_dir()
+	return os.getenv("TEX_OUT_DIR") or settings.tex_output_dir
+end
+
+local function get_tex_file()
+	return os.getenv("TEX_FILE") or settings.tex_file
+end
 
 -- creates the given output directory and all child directories in the output directory
 -- that contain *.tex files. This is needed for latexmk and pdflatex to build
@@ -24,8 +32,12 @@ local function mk_out_dirs(out)
 	end
 end
 
+local M = {}
+
 -- compiles the given tex file to the given output directory.
-M.compile = function(file, out)
+M.compile = function()
+	local out = get_out_dir()
+
 	vim.notify("Comiling TeX document. This might take a while...", "info", { title = "TeX Compile" })
 
 	mk_out_dirs(out)
@@ -46,23 +58,28 @@ M.compile = function(file, out)
 		"-halt-on-error",
 		"-interaction=nonstopmode",
 		"-outdir=" .. out,
-		file,
+		get_tex_file() .. ".tex",
 	}, {}, on_exit)
 end
 
 -- shows the logs of the last compilation.
-M.logs = function(out)
+M.logs = function()
+	local out = get_out_dir()
 	vim.cmd("e " .. out .. "/main.log")
 end
 
 -- cleans the build directory.
-M.clean = function(out)
+M.clean = function()
+	local out = get_out_dir()
 	vim.cmd("silent !rm -rf " .. out)
 end
 
 -- opens the comiled pdf file in zathura.
-M.view = function(out)
-	vim.cmd("silent !zathura " .. out .. "/main.pdf &")
+M.view = function()
+	local out = get_out_dir()
+	local file = get_tex_file() .. ".pdf"
+
+	vim.cmd("silent !zathura " .. out .. "/" .. file .. " &")
 end
 
 return M
