@@ -14,7 +14,7 @@ M.texlab = {
 			group = "TexCompileOnSave",
 			buffer = buffer,
 			callback = function()
-				tex.compile("main.tex", "out", false)
+				tex.compile("main.tex", "out")
 			end,
 		})
 
@@ -23,7 +23,7 @@ M.texlab = {
 		end, { desc = "View the pdf file." })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexCompile", function()
-			tex.compile("main.tex", "out", false)
+			tex.compile("main.tex", "out")
 		end, { desc = "Compile the main.tex file as pdf" })
 
 		vim.api.nvim_buf_create_user_command(buffer, "TexLogs", function()
